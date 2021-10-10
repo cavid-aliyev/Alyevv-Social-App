@@ -2,13 +2,23 @@ import React from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
 import "./assets/styles/globalStyles.css";
 
+import {getPosts} from './actions/posts'
 //components
 import Posts from "./components/Posts";
 import Form from "./components/Form";
 
+import {useDispatch} from 'react-redux'
+
 import memories from "./assets/images/memories.png";
 
 const App = () => {
+
+  const dispatch =  useDispatch()
+
+  React.useEffect(() => {
+    dispatch(getPosts())
+  }, [dispatch])
+
   return (
     <Container maxWidth="lg">
       <AppBar className="app-bar" position="static" color="inherit">
@@ -21,7 +31,7 @@ const App = () => {
         <Container>
           <Grid
             container
-            justify="space-between"
+            justifyContent="space-between"
             alignItems="stretch"
             spacing={3}
           >
